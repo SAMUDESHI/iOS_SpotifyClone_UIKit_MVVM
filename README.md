@@ -6,9 +6,10 @@ Swiftify is a Swift app clone inspired by Spotify, built using UIKit. It provide
 
 ### Project Timeline
 
-| Date         | Target                    | Next Steps                                    |
+| Date         | Target Achived                  | Next Steps                                    |
 |--------------|---------------------------|-----------------------------------------------|
 | 3rd June     | Setup project and readme | MVVM setup, Authentication, Profile Page, and familiarize with Spotify's official APIs |
+| 4th June     | MVVM,Auth setup |  Profile Page and browse apis |
 
 
 
