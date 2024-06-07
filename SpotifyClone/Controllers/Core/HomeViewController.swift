@@ -13,6 +13,18 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
        // self.view.backgroundColor = .purple
         // Do any additional setup after loading the view.
+        APICallers.shared.getCurrentUserProfile(completionHandler: {
+            (response) in
+            
+            switch response{
+            case .success(let profile):
+                print(profile)
+                break
+            
+            case .failure(let err):
+                print(err.reason)
+            }
+        })
     }
 
 

@@ -20,6 +20,8 @@ final class AuthManager{
     
     private init(){}
     
+    public var isTokenRefreshInProcess : Bool = false
+    
     public var signInURL : URL? {
         let redirectURI = "https://samudeshi.github.io/"
         let string = "https://accounts.spotify.com/authorize?response_type=code&client_id=\(constant.appID)&scope=\(constant.scope)&redirect_uri=\(redirectURI)&show_dialog=TRUE"
@@ -30,7 +32,7 @@ final class AuthManager{
         return accessToken != nil
     }
     
-    private var accessToken : String?{
+    public var accessToken : String?{
         return UserDefaults.standard.string(forKey: "access_token")
     }
     
@@ -42,7 +44,7 @@ final class AuthManager{
         return UserDefaults.standard.object(forKey: "expirationDate") as? Date
     }
     
-    private var shouldRefreshToken : Bool{
+    public var shouldRefreshToken : Bool{
         guard let date = tokenExpiratinDate else{
             return false
         }
@@ -124,10 +126,10 @@ final class AuthManager{
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         request.httpBody = components.query?.data(using: .utf8)
-        
+        isTokenRefreshInProcess = true
         let task = URLSession.shared.dataTask(with: request){
             data, _, error in
-            
+            self.isTokenRefreshInProcess = false
             guard let data = data, error == nil else{
                 completion(false)
                 return
