@@ -149,6 +149,7 @@ class HttpUtility
         do {
             return try decoder.decode(responseType, from: data)
         }catch let error {
+            print("Error \(error)")
             //debugPrint("error while decoding JSON response =>\(error.localizedDescription)")
         }
         return nil
@@ -190,11 +191,7 @@ class HttpUtility
                     completionHandler(.success(data))
                 }
                 
-            }else if statusCode == 401{
-            //handle it
-            }else if statusCode == 403{
-                //handle it
-            }else if statusCode == 429{
+            }else if statusCode == 401  ||  statusCode == 403 || statusCode == 429{
                 //handle it
             }else{
                 let networkError = HUNetworkError(withServerResponse: data, forRequestUrl: URL(string: "Sotify Clone")!, errorMessage: "Something Went Wrong", forStatusCode: statusCode ?? 99)
