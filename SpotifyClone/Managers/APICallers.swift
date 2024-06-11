@@ -22,7 +22,7 @@ final class APICallers{
         do{
             return try decoder.decode(responseType, from: data)
         }catch let error{
-            print("Parsing Failed")
+            print("Parsing Failed \(error)")
         }
         return nil
     }

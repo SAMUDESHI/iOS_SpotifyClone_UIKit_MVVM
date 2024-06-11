@@ -102,9 +102,9 @@ final class AuthManager{
         task.resume()
     }
     
-    public func refreshAccessToken(completion: @escaping ((Bool) -> Void)){
+    public func refreshAccessToken(completion:  ((Bool) -> Void)?){
         guard shouldRefreshToken else{
-            completion(true)
+            completion?(true)
             return
         }
         guard let url = URL(string: constant.tokenAPIURL) else{
@@ -131,7 +131,7 @@ final class AuthManager{
             data, _, error in
             self.isTokenRefreshInProcess = false
             guard let data = data, error == nil else{
-                completion(false)
+                completion?(false)
                 return
             }
             
@@ -142,11 +142,11 @@ final class AuthManager{
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 print("Token is now Refreshed")
                 self.cacheToken(authToken: result)
-                completion(true)
+                completion?(true)
                 
             }catch{
                 print(error.localizedDescription)
-                completion(false)
+                completion?(false)
             }
         }
         task.resume()

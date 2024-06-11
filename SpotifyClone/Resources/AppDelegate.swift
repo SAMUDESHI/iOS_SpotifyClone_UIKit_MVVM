@@ -17,16 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         let window = UIWindow(frame: UIScreen.main.bounds)
         if AuthManager.shared.isSignedIn{
+          
+            AuthManager.shared.refreshAccessToken(completion: nil)
             window.rootViewController = TabBarViewController()
         }else{
             window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
         }
         window.makeKeyAndVisible()
         self.window = window
-        AuthManager.shared.refreshAccessToken(completion: {
-            sucess in
-            print("Refreshed")
-        })
+//        AuthManager.shared.refreshAccessToken(completion: {
+//            sucess in
+//            print("Refreshed")
+//        })
         return true
     }
 
