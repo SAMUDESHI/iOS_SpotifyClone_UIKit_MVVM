@@ -2,7 +2,7 @@
 
 Swiftify is a Swift app clone inspired by Spotify, built using UIKit. It provides a music streaming platform where users can listen to their favorite songs, create playlists, discover new music, and much more. The project utilizes the first-party API from Spotify, and all designs are implemented programmatically.
 
-## 7-Day Challenge (June 3, 2024 - June 9, 2024)
+## 7-Day Challenge (June 3, 2024 - June 16, 2024)
 
 ### Project Timeline
 
@@ -10,6 +10,11 @@ Swiftify is a Swift app clone inspired by Spotify, built using UIKit. It provide
 |--------------|---------------------------|-----------------------------------------------|
 | 3rd June     | Setup project and readme | MVVM setup, Authentication, Profile Page, and familiarize with Spotify's official APIs |
 | 4th June     | MVVM,Auth setup |  Profile Page and browse apis |
+| 5th June - 10th June     | Just Central API Handler |  Profile Page and browse apis |
+| 11th June     | |  Playlist/Albums |
+| 12th June     |  |  Search |
+| 13th June     | |  Player |
+| 14th June     |  |  ----- |
 
 
 
