@@ -11,13 +11,47 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Home"
+        getFeaturedPlaylist()
+        //title = "Home"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
         
         
        
+    }
+    
+    private func getFeaturedPlaylist(){
+         APICallers.shared.getFeaturedPlaylist(completionHandler: {
+             results in
+             
+             switch results{
+             case.success(let data):
+                 print(data)
+                 break
+             
+             case.failure(let error):
+                 print(error)
+                 break
+             }
+             
+         })
+     }
+    
+   private func getNewReleases(){
+        APICallers.shared.getNewReleases(completionHandler: {
+            results in
+            
+            switch results{
+            case.success(let data):
+                print(data)
+                break
+            
+            case.failure(let error):
+                print(error)
+                break
+            }
+            
+        })
     }
     
     @objc func didTapSettings(){

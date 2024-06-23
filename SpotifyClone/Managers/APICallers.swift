@@ -54,4 +54,90 @@ final class APICallers{
             
         })
     }
+    
+    public func getNewReleases(completionHandler:@escaping(Result<NewReleases,HUNetworkError>)->Void){
+        let utility = HttpUtility.shared
+        
+        utility.authenticationToken = AuthManager.shared.accessToken
+        let requestUrl = URL(string: constant.baseAPIUrl + "/browse/new-releases")
+        
+        utility.request(url: requestUrl!, method: .get, completionHandler: {
+            (response) in
+            
+            switch response{
+                
+            case .success(let data):
+                if let response = self.decodeJsonResponse(data: data as! Data, responseType: NewReleases.self){
+                    completionHandler(.success(response))
+                }else{
+                    completionHandler(.failure(HUNetworkError(forRequestUrl: requestUrl!, errorMessage: "Unable To Parse Data", forStatusCode: 0)))
+                }
+                break
+            
+            case .failure(let err):
+                completionHandler(.failure(err))
+                break
+            }
+            
+            
+        })
+    }
+    
+    public func getFeaturedPlaylist(completionHandler:@escaping(Result<FeaturedPlaylist,HUNetworkError>)->Void){
+        let utility = HttpUtility.shared
+        
+        utility.authenticationToken = AuthManager.shared.accessToken
+        let requestUrl = URL(string: constant.baseAPIUrl + "/browse/featured-playlists?locale=in_hi&limit=3")
+        
+        utility.request(url: requestUrl!, method: .get, completionHandler: {
+            (response) in
+            
+            switch response{
+                
+            case .success(let data):
+                if let response = self.decodeJsonResponse(data: data as! Data, responseType: FeaturedPlaylist.self){
+                    completionHandler(.success(response))
+                }else{
+                    completionHandler(.failure(HUNetworkError(forRequestUrl: requestUrl!, errorMessage: "Unable To Parse Data", forStatusCode: 0)))
+                }
+                break
+            
+            case .failure(let err):
+                completionHandler(.failure(err))
+                break
+            }
+            
+            
+        })
+    }
+    
+    
+    public func getRecommendations(completionHandler:@escaping(Result<FeaturedPlaylist,HUNetworkError>)->Void){
+        let utility = HttpUtility.shared
+        
+        utility.authenticationToken = AuthManager.shared.accessToken
+        let requestUrl = URL(string: constant.baseAPIUrl + "/recommendations")
+        
+        utility.request(url: requestUrl!, method: .get, completionHandler: {
+            (response) in
+            
+            switch response{
+                
+            case .success(let data):
+                if let response = self.decodeJsonResponse(data: data as! Data, responseType: FeaturedPlaylist.self){
+                    completionHandler(.success(response))
+                }else{
+                    completionHandler(.failure(HUNetworkError(forRequestUrl: requestUrl!, errorMessage: "Unable To Parse Data", forStatusCode: 0)))
+                }
+                break
+            
+            case .failure(let err):
+                completionHandler(.failure(err))
+                break
+            }
+            
+            
+        })
+    }
+    
 }
