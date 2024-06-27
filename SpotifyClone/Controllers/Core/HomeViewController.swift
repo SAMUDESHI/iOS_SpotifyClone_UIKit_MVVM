@@ -8,6 +8,12 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    private var collectionView: UICollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
+            return Self.createSectionLayout(index: sectionIndex)
+        })
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,26 +21,66 @@ class HomeViewController: UIViewController {
         //title = "Home"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
-        
+        renderCollectionView()
         
        
     }
     
+    func renderCollectionView(){
+        
+        
+    }
+    
+    private static func createSectionLayout(index: Int) -> NSCollectionLayoutSection{
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), 
+                                               heightDimension: .absolute(120)),
+            subitems: <#T##[NSCollectionLayoutItem]#>,
+            count: 1)
+        
+        let section = NSCollectionLayoutSection(group: <#T##NSCollectionLayoutGroup#>)
+    }
+    
     private func getFeaturedPlaylist(){
-         APICallers.shared.getFeaturedPlaylist(completionHandler: {
-             results in
-             
-             switch results{
-             case.success(let data):
-                 print(data)
-                 break
-             
-             case.failure(let error):
-                 print(error)
-                 break
-             }
-             
-         })
+        
+        APICallers.shared.getRecommendationsGenres(completionHandler: {
+            results in
+            
+            switch results{
+            case.success(let data):
+                print(data)
+                let genres = data.genres
+                var seed = Set<String>()
+                while seed.count < 5 {
+                    if let random = genres.randomElement(){
+                        seed.insert(random)
+                    }
+                }
+                var genresString = seed.joined(separator: ",")
+                APICallers.shared.getRecommendations(genres: genresString, completionHandler: {
+                    results in
+                    
+                    switch results{
+                    case.success(let data):
+                        print(data)
+                        break
+                    
+                    case.failure(let error):
+                        print(error)
+                        break
+                    }
+                    
+                })
+                break
+            
+            case.failure(let error):
+                print(error)
+                break
+            }
+        })
+        
+        
      }
     
    private func getNewReleases(){

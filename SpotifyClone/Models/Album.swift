@@ -16,7 +16,6 @@ struct Album: Codable {
     let href, id: String
     let images: [APIImage]
     let name, releaseDate, releaseDatePrecision: String
-    let restrictions: Restrictions
     let type, uri: String
     let artists: [Artist]
 
@@ -28,6 +27,6 @@ struct Album: Codable {
         case href, id, images, name
         case releaseDate = "release_date"
         case releaseDatePrecision = "release_date_precision"
-        case restrictions, type, uri, artists
+        case type, uri, artists
     }
 }

@@ -112,11 +112,11 @@ final class APICallers{
     }
     
     
-    public func getRecommendations(completionHandler:@escaping(Result<FeaturedPlaylist,HUNetworkError>)->Void){
+    public func getRecommendations(genres : String,completionHandler:@escaping(Result<Recommendation,HUNetworkError>)->Void){
         let utility = HttpUtility.shared
         
         utility.authenticationToken = AuthManager.shared.accessToken
-        let requestUrl = URL(string: constant.baseAPIUrl + "/recommendations")
+        let requestUrl = URL(string: constant.baseAPIUrl + "/recommendations?limit=40&seed_genres=\(genres)")
         
         utility.request(url: requestUrl!, method: .get, completionHandler: {
             (response) in
@@ -124,7 +124,36 @@ final class APICallers{
             switch response{
                 
             case .success(let data):
-                if let response = self.decodeJsonResponse(data: data as! Data, responseType: FeaturedPlaylist.self){
+//                print("data is \(String(data: data as! Data, encoding: .utf8))")
+                if let response = self.decodeJsonResponse(data: data as! Data, responseType: Recommendation.self){
+                    completionHandler(.success(response))
+                }else{
+                    completionHandler(.failure(HUNetworkError(forRequestUrl: requestUrl!, errorMessage: "Unable To Parse Data", forStatusCode: 0)))
+                }
+                break
+            
+            case .failure(let err):
+                completionHandler(.failure(err))
+                break
+            }
+            
+            
+        })
+    }
+    
+    public func getRecommendationsGenres(completionHandler:@escaping(Result<Genres,HUNetworkError>)->Void){
+        let utility = HttpUtility.shared
+        
+        utility.authenticationToken = AuthManager.shared.accessToken
+        let requestUrl = URL(string: constant.baseAPIUrl + "/recommendations/available-genre-seeds")
+        
+        utility.request(url: requestUrl!, method: .get, completionHandler: {
+            (response) in
+            
+            switch response{
+                
+            case .success(let data):
+                if let response = self.decodeJsonResponse(data: data as! Data, responseType: Genres.self){
                     completionHandler(.success(response))
                 }else{
                     completionHandler(.failure(HUNetworkError(forRequestUrl: requestUrl!, errorMessage: "Unable To Parse Data", forStatusCode: 0)))

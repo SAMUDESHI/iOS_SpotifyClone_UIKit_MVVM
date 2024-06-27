@@ -35,6 +35,7 @@
 		33E253BA2C181BC700BE2697 /* NewReleases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E253B92C181BC700BE2697 /* NewReleases.swift */; };
 		33E253BC2C181F9E00BE2697 /* FeaturedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E253BB2C181F9E00BE2697 /* FeaturedPlaylist.swift */; };
 		33E253BE2C18231600BE2697 /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E253BD2C18231600BE2697 /* APIImage.swift */; };
+		33EC04582C2D0BA3008F2DBD /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC04572C2D0BA3008F2DBD /* Genres.swift */; };
 		33FDC0A02C0E095100CBA715 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDC09F2C0E095100CBA715 /* AppDelegate.swift */; };
 		33FDC0A22C0E095100CBA715 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDC0A12C0E095100CBA715 /* SceneDelegate.swift */; };
 		33FDC0A42C0E095100CBA715 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDC0A32C0E095100CBA715 /* HomeViewController.swift */; };
@@ -91,6 +92,7 @@
 		33E253B92C181BC700BE2697 /* NewReleases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleases.swift; sourceTree = "<group>"; };
 		33E253BB2C181F9E00BE2697 /* FeaturedPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylist.swift; sourceTree = "<group>"; };
 		33E253BD2C18231600BE2697 /* APIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIImage.swift; sourceTree = "<group>"; };
+		33EC04572C2D0BA3008F2DBD /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		33FDC09C2C0E095100CBA715 /* SpotifyClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FDC09F2C0E095100CBA715 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FDC0A12C0E095100CBA715 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				33E253BD2C18231600BE2697 /* APIImage.swift */,
 				33BE61A52C21480000238DF0 /* Recommendation.swift */,
 				33BE61A92C2148AB00238DF0 /* Album.swift */,
+				33EC04572C2D0BA3008F2DBD /* Genres.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				33AE8B752C0EDB5A002F3A90 /* WelcomeViewController.swift in Sources */,
 				33AE8B9E2C145933002F3A90 /* Extension+UIViewController.swift in Sources */,
 				33AE8B792C0EDB76002F3A90 /* ProfileViewController.swift in Sources */,
+				33EC04582C2D0BA3008F2DBD /* Genres.swift in Sources */,
 				33AE8B952C0F7C8A002F3A90 /* AuthResponse.swift in Sources */,
 				33FDC0A42C0E095100CBA715 /* HomeViewController.swift in Sources */,
 				33AE8B912C0EDCA3002F3A90 /* TabBarViewController.swift in Sources */,
